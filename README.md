@@ -1,7 +1,7 @@
 <h1 align="center"> MST Dependency Parser </h1>
 
 This work was partially included in the grade for course **DSA3@UniversityOfTubingen**.
-The following implementations are provided by me (@MarioKuzmanov)and @HuixinYang.
+The following implementations are provided by me (@MarioKuzmanov) and @HuixinYang.
 
 We present graph-based approach for dependency parsing. During testing, to ensure no cyclic parses
 arise we get the maximum spanning tree based on the Chu-Liu algorithm. The resulting graph is our final prediction.

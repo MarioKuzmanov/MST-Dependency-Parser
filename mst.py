@@ -169,14 +169,10 @@ def mst_parse(sent, score_fn, deprels=UDREL):
                         minloss = weight - uw
                         oldp = parent
                         bestu, bestv, bestw, bestrel = u, v, uw, deprel
+
         # Add the cyclic edge, for which we found min_loss replacement , to the removed set
         removed.add((oldp, bestv))
-        # --------------------------
-        # Problem1: Add the to-be-removed edge to remove set does not mean this edge is actually removed;
-        # What the initial code does is add one additional edge rather than remove it;
-        #
-        # Problem2: In some languages it wouldn't be possible to refer to variables,
-        # that's why some changes involve introducing scope variables
+
         mst.remove_edge(oldp, bestv)
         # --------------------------
         mst.add_edge(bestu, bestv, bestw, bestrel)
