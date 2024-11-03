@@ -118,11 +118,6 @@ class DepGraph:
 def mst_parse(sent, score_fn, deprels=UDREL):
     """Parse a given sentence with the MST algorithm.
 
-    Note that even though we are doing labeled parsing, dependency
-    labels are determined at the beginning (our scorers do not
-    always assign the same score to the same label between two
-    words)
-
     Parameters:
     sent: The input sentence represented as a sequence of Tokens.
     score_fn: A callable (function) that takes a sentence, the indices
@@ -184,10 +179,7 @@ def mst_parse(sent, score_fn, deprels=UDREL):
 
 def evaluate(gold_sent, pred_sent):
     """Calculate and return labeled and unlabeled attachment scores."""
-    #
-    # BUG 3/3: fix a trivial bug below that results in
-    # wrong calculation of the evaluation metric(s).
-    #
+
     assert len(gold_sent) == len(pred_sent)
     n = len(gold_sent) - 1
     uas, las = 0, 0
@@ -207,7 +199,7 @@ def evaluate_model(train_file, test_file):
     sc_scorer.train(train_file)
 
     # evaluate baseline vs. scorer
-    uas_base, las_base, n = 0, 0, 0
+    n = 0
     uas_scorer, las_scorer = 0, 0
     for sent in read_conllu(test_file):
         mst_scorer = mst_parse(sent, score_fn=sc_scorer.score)
